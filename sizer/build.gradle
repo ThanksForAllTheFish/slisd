@@ -1,0 +1,21 @@
+apply plugin: 'scala'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	def scalaVersion = "2.10.3"
+    compile "org.scala-lang:scala-library:${scalaVersion}"
+    compile "org.scala-lang:scala-actors:${scalaVersion}"
+    testCompile 'junit:junit:4.11'
+    testCompile "org.scala-lang:scala-reflect:${scalaVersion}"
+    testCompile 'org.scalatest:scalatest_2.10:2.0'
+}
+
+/*compileScala {
+    scalaCompileOptions.useCompileDaemon = true
+
+    // optionally specify host and port of the daemon:
+    scalaCompileOptions.daemonServer = "localhost:4243"
+}*/
