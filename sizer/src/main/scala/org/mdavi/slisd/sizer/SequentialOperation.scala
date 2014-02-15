@@ -7,15 +7,17 @@ class SequentialOperation(override val urls: List[String]) extends AbstractOpera
   
   @Override
   def size() : Map[String, Int] = {
-    val size = (r : Map[String, Int], url : String) => r + (url -> getSize(url))
-    val sizes = urls.foldLeft(Map.empty[String, Int])(size)
-    sizes
+    execute( getSize )
   }
   
   @Override
   def count(): Map[String, Int] = {
-    val linkNumber = (r : Map[String, Int], url : String) => r + (url -> linkCount(url))
-    val links = urls.foldLeft(Map.empty[String, Int])(linkNumber)
-    links
+    execute( linkCount )
+  }
+  
+  private def execute( func: (String) => Int ): scala.collection.immutable.Map[String,Int] = {
+    val size = (r : Map[String, Int], url : String) => r + (url -> func(url))
+    val sizes = urls.foldLeft(Map.empty[String, Int])(size)
+    sizes
   }
 }

@@ -36,7 +36,9 @@ class OperationsTest extends UnitSpec {
     }
   }
 
-  private def sameAs(seqSize: Map[String, Int], conSize: Map[String, Int]) {
+  private def sameAs(func1: () => Map[String, Int], func2: () => Map[String, Int]) {
+    val seqSize = func1.apply
+    val conSize = func2.apply
     seqSize.foreach {
       entry =>
         withClue(entry._1) { entry._2 should equal(conSize.getOrElse(entry._1, 0)) }

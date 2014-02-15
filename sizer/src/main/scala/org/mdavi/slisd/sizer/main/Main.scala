@@ -60,7 +60,7 @@ object Main {
     println("Concurrent sites links");
     ccl._2.asInstanceOf[Map[String, Int]].foreach {
       entry =>
-        println(entry._1 + " is " + entry._2 + " links")
+        println(entry._1 + " has " + entry._2 + " links")
     }
   }
 }
